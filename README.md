@@ -1,6 +1,6 @@
 <div align="center">
 
-  <img src="https://github.com/btigi/DeskImage/resources/icon.png"  height="70"/>
+  ![Logo](resources/icon.png)
 
 </div>
 
