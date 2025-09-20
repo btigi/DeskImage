@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows;
+using System.Windows.Interop;
 using Application = System.Windows.Application;
+using static DeskImage.Util.Interop;
 
 namespace DeskImage
 {
@@ -53,6 +55,15 @@ namespace DeskImage
             this.Top = -500;
 
             CloseHide();
+        }
+
+        protected override void OnSourceInitialized(EventArgs e)
+        {
+            base.OnSourceInitialized(e);
+            var hwnd = new WindowInteropHelper(this).Handle;
+            int exStyle = (int)GetWindowLong(hwnd, GWL_EXSTYLE);
+            exStyle |= WS_EX_TOOLWINDOW | WS_EX_NOACTIVATE;
+            SetWindowLong(hwnd, GWL_EXSTYLE, (IntPtr)exStyle);
         }
 
         private void CloseHide()
